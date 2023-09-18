@@ -19,6 +19,13 @@ class AgreementController extends Controller
         return view('pages.create');
     }
 
+    public function detail(Agreement $agreement)
+    {
+        return view('pages.detail', [
+            'agreement' => $agreement,
+        ]);
+    }
+
     public function uploadProcess(Request $request)
     {
         $messages = [

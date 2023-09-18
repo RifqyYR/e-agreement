@@ -48,7 +48,10 @@ Route::get('/tambah-perjanjian', [AgreementController::class, 'create'])
 Route::post('/proses-tambah-perjanjian', [AgreementController::class, 'uploadProcess'])->middleware(['auth', 'verified']);
 
 // Detail route
-Route::get('/detail/{agreement:id}', [DetailController::class, 'index'])->name('detail')->middleware(['auth', 'verified']);
+Route::get('/detail/{agreement:id}', [AgreementController::class, 'detail'])->name('detail')->middleware(['auth', 'verified']);
+
+// Edit Route
+Route::get('/edit/{agreement:id}', [AgreementController::class, 'edit'])->name('edit')->middleware(['auth', 'verified']);
 
 Route::post('/logout', [HomeController::class, 'logout']);
 

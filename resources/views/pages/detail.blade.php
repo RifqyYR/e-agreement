@@ -44,7 +44,7 @@
                 </div>
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe class="embed-responsive-item"
-                        src="{{ url('/laraview/#../storage/files/perjanjian/sarpras/1694763196.4. KUNCI CERDAS DAN PRIBADI BINLAT SIP 2021' . '.pdf') }}"
+                        src="{{ url('/laraview/#../storage/'.$agreement->fileName) }}"
                         allowfullscreen></iframe>
                 </div>
             </div>
