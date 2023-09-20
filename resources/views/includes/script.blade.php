@@ -96,7 +96,7 @@
         if (res.agreements.length <= 0) {
             htmlView += `
          <tr>
-            <td colspan="7">Data Tidak Ditemukan.</td>
+            <td colspan="7">Tidak ada data.</td>
         </tr>`;
         }
         for (let i = 0; i < res.agreements.length; i++) {

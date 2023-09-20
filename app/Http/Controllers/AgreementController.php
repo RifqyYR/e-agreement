@@ -61,10 +61,13 @@ class AgreementController extends Controller
         if ($request->hasFile('suratPerjanjian')) {
             $file = $request->file('suratPerjanjian');
             $name = now()->timestamp . "_{$file->getClientOriginalName()}";
-            $path = $request->file('suratPerjanjian')->storeAs('files/perjanjian/'.$request->jenisPerjanjian, $name, 'public');
+            $tipePerjanjian = $request->jenisPerjanjian;
+            $tipePerjanjianBaru = str_replace(" ", "", $tipePerjanjian);
+            $path = $request->file('suratPerjanjian')->storeAs('files/perjanjian/'.$tipePerjanjianBaru, $name, 'public');
+            $path2 = $agreement->fileName;
 
-            if (File::exists('storage/'.$path)) {
-                File::delete('storage/'.$path);
+            if (File::exists('storage/'.$path2)) {
+                File::delete('storage/'.$path2);
             }
 
             $agreement->update([
@@ -92,9 +95,9 @@ class AgreementController extends Controller
         }
 
         if($agreement) {
-            return redirect()->route('home')->with('success', 'Berhasil menambahkan surat baru');
+            return redirect()->route('home')->with('success', 'Berhasil update perjanjian baru');
         } else {
-            return redirect()->back()->with('error', 'Something goes wrong while uploading file!');
+            return redirect()->back()->with('error', 'Gagal update perjanjian baru');
         }
     }
 
@@ -121,7 +124,9 @@ class AgreementController extends Controller
         try {
             $file = $request->file('suratPerjanjian');
             $name = now()->timestamp . "_{$file->getClientOriginalName()}";
-            $path = $request->file('suratPerjanjian')->storeAs('files/perjanjian/'.$request->jenisPerjanjian, $name, 'public');
+            $tipePerjanjian = $request->jenisPerjanjian;
+            $tipePerjanjianBaru = str_replace(" ", "", $tipePerjanjian);
+            $path = $request->file('suratPerjanjian')->storeAs('files/perjanjian/'.$tipePerjanjianBaru, $name, 'public');
             $agreement = Agreement::create([
                 'id' => Uuid::uuid4(),
                 'title' => $request->namaSurat,
@@ -136,10 +141,10 @@ class AgreementController extends Controller
             ]);
 
             if ($agreement) {
-                return redirect()->route('home')->with('success', 'Berhasil menambahkan surat baru');
+                return redirect()->route('home')->with('success', 'Berhasil menambahkan perjanjian baru');
             }
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Something goes wrong while uploading file!');
+            return redirect()->back()->with('error', 'Gagal menambahkan perjanjian baru');
         }
     }
 }
