@@ -64,10 +64,10 @@ class AgreementController extends Controller
             $tipePerjanjian = $request->jenisPerjanjian;
             $tipePerjanjianBaru = str_replace(" ", "", $tipePerjanjian);
             $path = $request->file('suratPerjanjian')->storeAs('files/perjanjian/'.$tipePerjanjianBaru, $name, 'public');
-            $path2 = $agreement->fileName;
+            $oldPath = $agreement->fileName;
 
-            if (File::exists('storage/'.$path2)) {
-                File::delete('storage/'.$path2);
+            if (File::exists('storage/'.$oldPath)) {
+                File::delete('storage/'.$oldPath);
             }
 
             $agreement->update([
@@ -145,6 +145,22 @@ class AgreementController extends Controller
             }
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Gagal menambahkan perjanjian baru');
+        }
+    }
+
+    public function delete(String $id)
+    {
+        $agreement = Agreement::find($id);
+        $path = $agreement->fileName;
+        if (File::exists('storage/'.$path)) {
+            File::delete('storage/'.$path);
+        }
+        $agreement->delete();
+
+        if ($agreement) {
+            return redirect()->route('home')->with('success', 'Berhasil menghapus perjanjian');
+        } else {
+            return redirect()->back()->with('error', 'Gagal menghapus perjanjian');
         }
     }
 }

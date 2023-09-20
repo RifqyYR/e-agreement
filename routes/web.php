@@ -54,6 +54,10 @@ Route::get('/detail/{agreement:id}', [AgreementController::class, 'detail'])->na
 Route::get('/edit/{agreement:id}', [AgreementController::class, 'edit'])->name('edit')->middleware(['auth', 'verified']);
 Route::put('/edit/{id}', [AgreementController::class, 'editProcess'])->name('edit.proses')->middleware(['auth', 'verified']);
 
+// Logout
 Route::post('/logout', [HomeController::class, 'logout']);
+
+// Delete
+Route::get('/delete/{id}', [AgreementController::class, 'delete'])->middleware(['auth', 'verified']);
 
 Auth::routes(['verifiy' => true]);

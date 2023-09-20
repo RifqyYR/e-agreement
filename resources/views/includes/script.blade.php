@@ -17,6 +17,9 @@
 {{-- Gijgo --}}
 <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
 
+{{-- Toastr --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 {{-- Search Function --}}
 <script>
     $('#search').on('keyup', function() {
@@ -153,4 +156,18 @@
         }
         $('tbody').html(htmlView);
     }
+</script>
+
+{{-- Alert --}}
+<script>
+    //message with toastr
+    @if(session()->has('success'))
+    
+        toastr.success('{{ session('success') }}', 'BERHASIL!'); 
+
+    @elseif(session()->has('error'))
+
+        toastr.error('{{ session('error') }}', 'GAGAL!'); 
+        
+    @endif
 </script>
