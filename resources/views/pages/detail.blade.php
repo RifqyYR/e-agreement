@@ -3,49 +3,66 @@
 @section('content')
     <div class="container-fluid">
         <!-- Page Heading -->
-        <div class="d-sm-flex align-items-center justify-content-between mb-3">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h5 mb-0 text-body font-weight-bold">{{ $agreement->title }}</h1>
         </div>
-        <div class="row">
-            <div class="col-xs-12 col-md-12 col-lg-12">
-                <div class="table-responsive">
-                    <table class="table table-borderless">
-                        <tbody>
-                            <tr>
-                                <th>Nomor Perjanjian</th>
-                                <td>: {{ $agreement->agreementNumber }}</td>
-                            </tr>
-                            <tr>
-                                <th>Jenis Perjanjian</th>
-                                <td>: {{ $agreement->agreementType }}</td>
-                            </tr>
-                            <tr>
-                                <th>Mitra</th>
-                                <td>: {{ $agreement->partner }}</td>
-                            </tr>
-                            <tr>
-                                <th>Unit</th>
-                                <td>: {{ $agreement->unit }}</td>
-                            </tr>
-                            <tr>
-                                <th>Tanggal Penandatanganan</th>
-                                <td>: {{ $agreement->signDate }}</td>
-                            </tr>
-                            <tr>
-                                <th>Tanggal Berlaku</th>
-                                <td>: {{ $agreement->startDate }}</td>
-                            </tr>
-                            <tr>
-                                <th>Tanggal Berakhir</th>
-                                <td>: {{ $agreement->endDate }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="embed-responsive embed-responsive-16by9">
+        <div class="row mb-4">
+            <div class="col-md-7">
+                <div class="embed-responsive embed-responsive-4by3">
                     <iframe class="embed-responsive-item"
-                        src="{{ url('/laraview/#../storage/'.$agreement->fileName) }}"
-                        allowfullscreen></iframe>
+                        src="{{ url('/laraview/#../storage/' . $agreement->fileName) }}"></iframe>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col">
+                        <p><b>Nomor perjanjian</b>
+                            <br>
+                            {{ $agreement->agreementNumber }}
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p><b>Tipe Perjanjian</b>
+                            <br>
+                            {{ strtoupper($agreement->agreementType) }}
+                        </p>
+                    </div>
+                    <div class="col-6">
+                        <p><b>Mitra</b>
+                            <br>
+                            PT. Pelindo Jasa Maritim
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p><b>Unit</b>
+                            <br>
+                            {{ $agreement->unit }}
+                        </p>
+                    </div>
+                    <div class="col-6">
+                        <p><b>Tanggal Penandatanganan</b>
+                            <br>
+                            {{ $agreement->signDate }}
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p><b>Tanggal Berlaku</b>
+                            <br>
+                            {{ $agreement->startDate }}
+                        </p>
+                    </div>
+                    <div class="col-6">
+                        <p><b>Tanggal Berakhir</b>
+                            <br>
+                            {{ $agreement->endDate }}
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
