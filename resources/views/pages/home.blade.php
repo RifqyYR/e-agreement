@@ -33,7 +33,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     Total Surat Perjanjian Kerja Sama</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">120</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $total_agreements }}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -50,7 +50,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                     Total Surat Perjanjian Kerja Sama yang Akan Berakhir</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $total_expired_agreements }}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
