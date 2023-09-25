@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AgreementController;
-use App\Http\Controllers\DetailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LainnyaController;
@@ -59,5 +58,8 @@ Route::post('/logout', [HomeController::class, 'logout']);
 
 // Delete
 Route::get('/delete/{id}', [AgreementController::class, 'delete'])->middleware(['auth', 'verified']);
+
+// Archive
+Route::get('/arsip', [AgreementController::class, 'archive'])->middleware(['auth', 'verified']);
 
 Auth::routes(['verifiy' => true]);

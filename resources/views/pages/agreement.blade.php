@@ -34,7 +34,8 @@
                                         $end_date = strtotime($agreement->endDate);
                                     }
                                 @endphp
-                                <tr class={{ ($end_date - $start_date) / 60 / 60 / 24 <= 10 ? 'text-danger' : '' }}>
+                                {{-- @dd(round(($end_date - $start_date) / 60 / 60 / 24) <= 10) --}}
+                                <tr class={{ round(($end_date - $start_date) / 60 / 60 / 24) <= 10 ? 'text-danger' : '' }}>
                                     <th scope="row">{{ $i++ }}</th>
                                     <td>{{ $agreement->title }}</td>
                                     <td>{{ $agreement->agreementNumber }}</td>

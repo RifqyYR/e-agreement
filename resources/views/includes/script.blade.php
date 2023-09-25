@@ -103,6 +103,10 @@
         </tr>`;
         }
         for (let i = 0; i < res.agreements.length; i++) {
+            var startDate = res.agreements[i].startDate;
+            var endDate = res.agreements[i].endDate;
+
+            var differenceInDays = Math.round((endDate - startDate) / (1000 * 60 * 60 * 24));
             htmlView += `
             @php
                 if (isset($agreement)) {
@@ -113,7 +117,7 @@
                     $start_date = 0;
                 }
             @endphp
-          <tr class={{ ($end_date - $start_date) / 60 / 60 / 24 <= 10 ? 'text-danger' : '' }}>
+            <tr class="` + `(endDate - startDate) / 60 / 60 / 24 <= 10 ? 10 : 0` + `">
              <th scope="row">` + (i + 1) + `</th>
                 <td>` + res.agreements[i].title + `</td>
                  <td>` + res.agreements[i].agreementNumber + `</td>

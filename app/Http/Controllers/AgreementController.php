@@ -162,4 +162,9 @@ class AgreementController extends Controller
             return redirect()->back()->with('error', 'Gagal menghapus perjanjian');
         }
     }
+
+    public function archive()
+    {
+        return view('pages.archive');
+    }
 }

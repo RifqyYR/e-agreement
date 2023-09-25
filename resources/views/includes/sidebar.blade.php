@@ -85,8 +85,8 @@
     {{-- Divider --}}
     <hr class="sidebar-divider">
 
-    <li class="nav-item {{ Request::is('lainnya') ? 'active' : '' }}">
-        <a class="nav-link" href="/lainnya">
+    <li class="nav-item {{ Request::is('arsip') ? 'active' : '' }}">
+        <a class="nav-link" href="/arsip">
             <span>Arsip</span>
         </a>
     </li>
