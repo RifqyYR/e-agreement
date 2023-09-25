@@ -1,3 +1,6 @@
+{{-- Ajax --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
 <!-- Bootstrap core JavaScript-->
 <script src="{{ url('backend/vendor/jquery/jquery.min.js') }}"></script>
 <script src="{{ url('backend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -10,9 +13,6 @@
 
 <!-- Page level plugins -->
 <script src="{{ url('backend/vendor/chart.js/Chart.min.js') }}"></script>
-
-{{-- Ajax --}}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
 {{-- Gijgo --}}
 <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
@@ -104,7 +104,16 @@
         }
         for (let i = 0; i < res.agreements.length; i++) {
             htmlView += `
-          <tr>
+            @php
+                if (isset($agreement)) {
+                    $start_date = strtotime($agreement->startDate);
+                    $end_date = strtotime($agreement->endDate);
+                } else {
+                    $end_date = 0;
+                    $start_date = 0;
+                }
+            @endphp
+          <tr class={{ ($end_date - $start_date) / 60 / 60 / 24 <= 10 ? 'text-danger' : '' }}>
              <th scope="row">` + (i + 1) + `</th>
                 <td>` + res.agreements[i].title + `</td>
                  <td>` + res.agreements[i].agreementNumber + `</td>
@@ -162,10 +171,14 @@
 <script>
     //message with toastr
     @if (session()->has('success'))
-
         toastr.success('{{ session('success') }}', 'BERHASIL!');
     @elseif (session()->has('error'))
-
         toastr.error('{{ session('error') }}', 'GAGAL!');
     @endif
+</script>
+
+<script>
+    $(window).on('load', function() {
+        $('#contractNotificationModal').modal('show');
+    });
 </script>

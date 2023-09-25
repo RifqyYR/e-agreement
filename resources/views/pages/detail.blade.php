@@ -64,6 +64,9 @@
                         </p>
                     </div>
                 </div>
+                <div class="row m-1">
+                    <a href="{{ url('/storage/' . $agreement->fileName) }}"><button class="btn btn-info">Unduh Perjanjian</button></a>
+                </div>
             </div>
         </div>
     </div>

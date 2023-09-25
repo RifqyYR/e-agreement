@@ -8,7 +8,7 @@
                 <strong>{{ $message }}</strong>
             </div>
         @endif --}}
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <div class="d-sm-flex align-items-center justify-content-between mb-3">
             <h1 class="h3 mb-0 text-gray-800">Beranda</h1>
             @if (Auth::user()->isAdmin == 1)
                 <a href="{{ url('/tambah-perjanjian') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
@@ -61,5 +61,67 @@
             </div>
         </div>
 
+        <h3 class="h3 mb-3 text-gray-800">Daftar Perjanjian yang Akan Berakhir</h3>
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col" class="text-center">No</th>
+                                <th scope="col" class="text-center">Judul</th>
+                                <th scope="col" class="text-center">Nomor Surat</th>
+                                <th scope="col" class="text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $i = 1;
+                            @endphp
+                            @foreach ($ending_agreements as $agreement)
+                                <tr>
+                                    <th scope="row">{{ $i++ }}</th>
+                                    <td class="text-center">{{ $agreement->title }}</td>
+                                    <td class="text-center">{{ $agreement->agreementNumber }}</td>
+                                    <td class="d-flex justify-content-center">
+                                        <button value="perpanjang" class="btn btn-primary btn-sm">Perpanjang</button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="contractNotificationModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{ $total_expired_agreements }} Perjanjian Segera
+                        Berakhir</h5>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Tampilkan data perjanjian yang akan berakhir di sini -->
+                    <ul>
+                        @foreach ($ending_agreements as $agreement)
+                            @php
+                                $now = time(); // or your date as well
+                                $your_date = strtotime($agreement->endDate);
+                                $datediff = $your_date - $now;
+                            @endphp
+                            <li class="text-danger">{{ $agreement->title }} -
+                                {{ $datediff > 0 ? round($datediff / (60 * 60 * 24)) . " hari lagi" : "Sudah lewat " . round($datediff / (60 * 60 * 24)) * -1 . " hari" }}
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

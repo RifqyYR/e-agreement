@@ -28,7 +28,13 @@
                                 $i = 1;
                             @endphp
                             @foreach ($agreements as $agreement)
-                                <tr>
+                                @php
+                                    if (isset($agreement)) {
+                                        $start_date = strtotime($agreement->startDate);
+                                        $end_date = strtotime($agreement->endDate);
+                                    }
+                                @endphp
+                                <tr class={{ ($end_date - $start_date) / 60 / 60 / 24 <= 10 ? 'text-danger' : '' }}>
                                     <th scope="row">{{ $i++ }}</th>
                                     <td>{{ $agreement->title }}</td>
                                     <td>{{ $agreement->agreementNumber }}</td>
