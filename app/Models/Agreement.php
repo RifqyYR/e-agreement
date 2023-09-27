@@ -22,6 +22,7 @@ class Agreement extends Model
         'startDate',
         'endDate',
         'fileName',
+        'isArchive',
     ];
 
     protected $keyType = 'string';

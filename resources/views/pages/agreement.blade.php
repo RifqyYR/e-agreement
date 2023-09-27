@@ -101,7 +101,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Batal</button>
+                                                    data-dismiss="modal" id="btn-delete">Batal</button>
                                                 <a href="{{ url('/delete/' . $agreement->id) }}">
                                                     <button type="button" class="btn btn-danger">Hapus</button>
                                                 </a>

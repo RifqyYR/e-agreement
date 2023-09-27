@@ -165,6 +165,9 @@ class AgreementController extends Controller
 
     public function archive()
     {
-        return view('pages.archive');
+        $archives = Agreement::where('isArchive', 1)->paginate(10);
+        return view('pages.archive', [
+            'archives' => $archives,
+        ]);
     }
 }
