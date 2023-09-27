@@ -105,8 +105,9 @@
         for (let i = 0; i < res.agreements.length; i++) {
             var startDate = res.agreements[i].startDate;
             var endDate = res.agreements[i].endDate;
+            var diffTime = Math.abs(Date.parse(endDate) - Date.parse(startDate));
 
-            var differenceInDays = Math.round((endDate - startDate) / (1000 * 60 * 60 * 24));
+            var differenceInDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
             htmlView += `
             @php
                 if (isset($agreement)) {
@@ -117,7 +118,7 @@
                     $start_date = 0;
                 }
             @endphp
-            <tr class="` + `(endDate - startDate) / 60 / 60 / 24 <= 10 ? 10 : 0` + `">
+            <tr class="${differenceInDays <= 10 ? 'text-danger' : ''}">
              <th scope="row">` + (i + 1) + `</th>
                 <td>` + res.agreements[i].title + `</td>
                  <td>` + res.agreements[i].agreementNumber + `</td>
@@ -165,7 +166,7 @@
                             </button>
                     </div>
                 </td>
-          </tr>`;
+            </tr>`;
         }
         $('tbody').html(htmlView);
     }
@@ -173,7 +174,6 @@
 
 {{-- Alert --}}
 <script>
-    //message with toastr
     @if (session()->has('success'))
         toastr.success('{{ session('success') }}', 'BERHASIL!');
     @elseif (session()->has('error'))
