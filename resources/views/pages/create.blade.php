@@ -65,12 +65,7 @@
                     </div>
                     <div class="form-group">
                         <label for="unit">Unit</label>
-                        <select class="custom-select" name="unit">
-                            <option selected hidden value="">Unit...</option>
-                            <option value="1">Satu</option>
-                            <option value="2">Dua</option>
-                            <option value="3">Tiga</option>
-                        </select>
+                        <input type="text" class="form-control" name="unit" value="{{ old('unit') }}">
                     </div>
                     <div class="form-row">
                         <div class="form-group col-lg-4">

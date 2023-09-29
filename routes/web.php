@@ -53,6 +53,10 @@ Route::get('/detail/{agreement:id}', [AgreementController::class, 'detail'])->na
 Route::get('/edit/{agreement:id}', [AgreementController::class, 'edit'])->name('edit')->middleware(['auth', 'verified']);
 Route::put('/edit/{id}', [AgreementController::class, 'editProcess'])->name('edit.proses')->middleware(['auth', 'verified']);
 
+// Edit Route
+Route::get('/perpanjang/{agreement:id}', [AgreementController::class, 'extends'])->name('perpanjang')->middleware(['auth', 'verified']);
+Route::put('/perpanjang/{id}', [AgreementController::class, 'extendProcess'])->name('perpanjang.proses')->middleware(['auth', 'verified']);
+
 // Logout
 Route::post('/logout', [HomeController::class, 'logout']);
 

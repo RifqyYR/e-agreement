@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Agreement extends Model
+class Archive extends Model
 {
     use HasFactory;
 
     protected $primaryKey = 'id';
-    
+
     protected $fillable = [
         'id',
         'title',
@@ -24,7 +24,7 @@ class Agreement extends Model
         'fileName',
     ];
 
-    protected $keyType = 'string';
+    protected $keytype = 'string';
 
     public $incrementing = false;
 }

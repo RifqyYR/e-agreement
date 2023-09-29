@@ -84,7 +84,8 @@
                                     <td class="text-center">{{ $agreement->title }}</td>
                                     <td class="text-center">{{ $agreement->agreementNumber }}</td>
                                     <td class="d-flex justify-content-center">
-                                        <button value="perpanjang" class="btn btn-primary btn-sm">Perpanjang</button>
+                                        <a href="{{ url('/perpanjang/' . $agreement->id) }}"><button value="perpanjang"
+                                                class="btn btn-primary btn-sm">Perpanjang</button></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -104,16 +105,15 @@
                     <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <!-- Tampilkan data perjanjian yang akan berakhir di sini -->
                     <ul>
                         @foreach ($ending_agreements as $agreement)
                             @php
-                                $now = time(); // or your date as well
+                                $now = time();
                                 $your_date = strtotime($agreement->endDate);
                                 $datediff = $your_date - $now;
                             @endphp
                             <li class="text-danger">{{ $agreement->title }} -
-                                {{ $datediff > 0 ? round($datediff / (60 * 60 * 24)) . " hari lagi" : "Sudah lewat " . round($datediff / (60 * 60 * 24)) * -1 . " hari" }}
+                                {{ $datediff > 0 ? round($datediff / (60 * 60 * 24)) . ' hari lagi' : 'Sudah lewat ' . round($datediff / (60 * 60 * 24)) * -1 . ' hari' }}
                             </li>
                         @endforeach
                     </ul>

@@ -9,7 +9,7 @@ class SewaBangunanController extends Controller
 {
     public function sewaBangunan()
     {
-        $agreements = Agreement::where('agreementType', 'sewa bangunan')->where('isArchive', 0)->paginate(10);
+        $agreements = Agreement::where('agreementType', 'sewa bangunan')->paginate(10);
         return view('pages.agreement', [
             'title' => "Sewa Bangunan",
             'agreements' => $agreements,
@@ -18,15 +18,15 @@ class SewaBangunanController extends Controller
 
     public function search(Request $request)
     {
-        $agreements = Agreement::where('agreementType', 'sewa bangunan')->where('isArchive', 0)->get();
+        $agreements = Agreement::where('agreementType', 'sewa bangunan')->get();
         if ($request->keyword != '') {
             $agreements = Agreement::query()
                 ->where(function ($query) use ($request) {
-                    $query->where('agreementType', 'sewa bangunan')->where('isArchive', 0)
+                    $query->where('agreementType', 'sewa bangunan')
                         ->where('title', 'LIKE', '%' . $request->keyword . '%');
                 })
                 ->orWhere(function ($query) use ($request) {
-                    $query->where('agreementType', 'sewa bangunan')->where('isArchive', 0)
+                    $query->where('agreementType', 'sewa bangunan')
                         ->where('agreementNumber', 'LIKE', '%' . $request->keyword . '%');
                 })
                 ->get();

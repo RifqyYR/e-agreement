@@ -5,7 +5,7 @@
         {{-- Header --}}
         <div class="row">
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Ubah Surat Perjanjian</h1>
+                <h1 class="h3 mb-0 text-gray-800">Perpanjang Surat Perjanjian</h1>
             </div>
         </div>
 
@@ -37,7 +37,8 @@
                     </div>
                 @endif
 
-                <form action="{{ route('edit.proses', ["id" => $agreement->id]) }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('perpanjang.proses', ['id' => $agreement->id]) }}" method="post"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
@@ -54,9 +55,12 @@
                         <select class="custom-select" name="jenisPerjanjian">
                             <option hidden value="">Jenis Perjanjian...</option>
                             <option @if ($agreement->agreementType == 'sarpras') selected @endif value="sarpras">SARPRAS</option>
-                            <option @if ($agreement->agreementType == 'sewa bangunan') selected @endif value="sewa bangunan">Sewa Bangunan</option>
-                            <option @if ($agreement->agreementType == 'sewa kendaraan') selected @endif value="sewa kendaraan">Sewa Kendaraan</option>
-                            <option @if ($agreement->agreementType == 'tuks tersus') selected @endif value="tuks tersus">TUKS-TERSUS</option>
+                            <option @if ($agreement->agreementType == 'sewa bangunan') selected @endif value="sewa bangunan">Sewa Bangunan
+                            </option>
+                            <option @if ($agreement->agreementType == 'sewa kendaraan') selected @endif value="sewa kendaraan">Sewa Kendaraan
+                            </option>
+                            <option @if ($agreement->agreementType == 'tuks tersus') selected @endif value="tuks tersus">TUKS-TERSUS
+                            </option>
                             <option @if ($agreement->agreementType == 'upp') selected @endif value="upp">UPP</option>
                             <option @if ($agreement->agreementType == 'lainnya') selected @endif value="lainnya">Lainnya</option>
                         </select>
@@ -91,7 +95,7 @@
                         <input type="file" class="form-control-file" id="suratPerjanjian" name="suratPerjanjian">
                     </div>
                     <div class="form-group mt-5">
-                        <input type="submit" class="btn btn-primary" value="Ubah">
+                        <input type="submit" class="btn btn-primary" value="Simpan">
                     </div>
                 </form>
             </div>
