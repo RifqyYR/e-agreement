@@ -70,7 +70,7 @@
                                                     </svg>
                                                 </button></a>
                                             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="examplemodal">
+                                                data-target="examplemodal" onclick="hapus($agreement->id)">
                                                 <svg xmlns="http://www.w3.org/2000/svg" height="1em"
                                                     viewBox="0 0 448 512">
                                                     <style>
@@ -102,7 +102,7 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-dismiss="modal" id="btn-delete">Batal</button>
-                                                <a href="{{ url('/delete/' . $agreement->id) }}">
+                                                <a id="deleteLink" href="{{ url('/delete/' . $agreement->id) }}">
                                                     <button type="button" class="btn btn-danger">Hapus</button>
                                                 </a>
                                             </div>

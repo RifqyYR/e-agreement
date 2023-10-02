@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AgreementController;
+use App\Http\Controllers\ArchiveController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LainnyaController;
@@ -40,6 +41,7 @@ Route::post('/sewa-kendaraan/search', [SewaKendaraanController::class, 'search']
 Route::post('/tuks-tersus/search', [TUKSTERSUSController::class, 'search'])->name('tuksTersus.search');
 Route::post('/upp/search', [UPPController::class, 'search'])->name('upp.search');
 Route::post('/lainnya/search', [LainnyaController::class, 'search'])->name('lainnya.search');
+Route::post('/arsip/search', [ArchiveController::class, 'search'])->name('archive.search');
 
 // Route tambah perjanjian
 Route::get('/tambah-perjanjian', [AgreementController::class, 'create'])
@@ -48,6 +50,12 @@ Route::post('/proses-tambah-perjanjian', [AgreementController::class, 'uploadPro
 
 // Detail route
 Route::get('/detail/{agreement:id}', [AgreementController::class, 'detail'])->name('detail')->middleware(['auth', 'verified']);
+
+// Detail Archive Route
+Route::get('/detailArsip/{archive:id}', [ArchiveController::class, 'detail'])->name('archive.detail')->middleware(['auth', 'verified']);
+
+// Archive Page Route
+Route::get('/arsip', [ArchiveController::class, 'index'])->name('archive')->middleware(['auth', 'verified']);
 
 // Edit Route
 Route::get('/edit/{agreement:id}', [AgreementController::class, 'edit'])->name('edit')->middleware(['auth', 'verified']);
@@ -62,8 +70,9 @@ Route::post('/logout', [HomeController::class, 'logout']);
 
 // Delete
 Route::get('/delete/{id}', [AgreementController::class, 'delete'])->middleware(['auth', 'verified']);
+Route::get('/delete-arsip/{id}', [ArchiveController::class, 'delete'])->middleware(['auth', 'verified']);
 
 // Archive
-Route::get('/arsip', [AgreementController::class, 'archive'])->middleware(['auth', 'verified']);
+Route::get('/arsip', [ArchiveController::class, 'index'])->middleware(['auth', 'verified']);
 
 Auth::routes(['verifiy' => true]);

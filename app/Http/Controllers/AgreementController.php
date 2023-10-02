@@ -242,12 +242,4 @@ class AgreementController extends Controller
             return redirect()->back()->with('error', 'Gagal perpanjang perjanjian baru');
         }
     }
-
-    public function archive()
-    {
-        $archives = Archive::paginate(10);
-        return view('pages.archive', [
-            'archives' => $archives,
-        ]);
-    }
 }

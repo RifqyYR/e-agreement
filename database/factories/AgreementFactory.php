@@ -17,19 +17,22 @@ class AgreementFactory extends Factory
      */
     public function definition(): array
     {
-        $items = Array("sarpras", 'lainnya', 'sewa bangunan', 'sewa kendaraan', 'upp', 'tuks tersus');
+        $items = array("sarpras", 'lainnya', 'sewa bangunan', 'sewa kendaraan', 'upp', 'tuks tersus');
+        $numbers = array(20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40);
         $k = array_rand($items);
+        $i = array_rand($numbers);
+
         return [
             'id' => Uuid::uuid4(),
             'title' => "Perjanjian Kerjasama antara PT Pelindo Jasa Maritim dengan PT Abdi Sarana Nusa tentang  pelaksanaan penundaan kapal di DLKR dan DLKP Pelabuhan Bula",
-            'agreementNumber' => 'IFE-SMA-SPM-AGR-AGR-2022-0002 dan HM.03.02/7/6/1/PGPR/RH4/REG4-22',
+            'agreementNumber' => fake()->uuid(),
             'agreementType' => $items[$k],
             'partner' => 'PT Abdi Sarana Nusa Marine',
             'unit' => 'BULA',
             'signDate' => now(),
             'startDate' => now()->addDay(),
             'endDate' => now()->addMonth(),
-            'fileName' => '20230911_SPK Pelindo Jasa Maritim dengan PT Abdi Sarana Nusa'
+            'fileName' => 'files/perjanjian/sarpras/1695957354_PETUNJUK WRITEUP.pdf',
         ];
     }
 }

@@ -38,7 +38,7 @@
                                         <td>{{ $archive->endDate }}</td>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <a href="{{ url('/detail/' . $archive->id) }}"><button type="button"
+                                                <a href="{{ url('/detailArsip/' . $archive->id) }}"><button type="button"
                                                         class="btn btn-info btn-sm">
                                                         <svg xmlns="http://www.w3.org/2000/svg" height="1em"
                                                             viewBox="0 0 576 512">
@@ -85,7 +85,7 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal"
                                                         id="btn-delete">Batal</button>
-                                                    <a href="{{ url('/delete/' . $archive->id) }}">
+                                                    <a href="{{ url('/delete-arsip/' . $archive->id) }}">
                                                         <button type="button" class="btn btn-danger">Hapus</button>
                                                     </a>
                                                 </div>
