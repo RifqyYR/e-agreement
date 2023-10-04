@@ -242,4 +242,42 @@ class AgreementController extends Controller
             return redirect()->back()->with('error', 'Gagal perpanjang perjanjian baru');
         }
     }
+
+    public function archiveProcess(String $id)
+    {
+        $agreement = Agreement::find($id);
+
+        $tipePerjanjian = $agreement->agreementType;
+        $tipePerjanjianBaru = str_replace(" ", "", $tipePerjanjian);
+        $oldPath = $agreement->fileName;
+        $newPath = str_replace($tipePerjanjianBaru, "arsip", $oldPath);
+
+        dd($newPath);
+
+        if (File::exists('storage/' . $oldPath)) {
+            File::move('storage/' . $oldPath, 'storage/' . $newPath);
+            File::delete('storage/' . $oldPath);
+        }
+
+        Archive::create([
+            'id' => $agreement->id,
+            'title' => $agreement->title,
+            'agreementNumber' => $agreement->agreementNumber,
+            'agreementType' => $agreement->agreementType,
+            'partner' => $agreement->partner,
+            'unit' => $agreement->unit,
+            'signDate' => $agreement->signDate,
+            'startDate' => $agreement->startDate,
+            'endDate' => $agreement->endDate,
+            'fileName' => $newPath,
+        ]);
+
+        $agreement->delete();
+
+        if ($agreement) {
+            return redirect()->route('home')->with('success', 'Berhasil mengarsipkan perjanjian.');
+        } else {
+            return redirect()->back()->with('error', 'Gagal mengarsipkan perjanjian.');
+        }
+    }
 }

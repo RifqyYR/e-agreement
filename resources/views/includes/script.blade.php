@@ -243,4 +243,9 @@
         const link = document.getElementById('deleteLink');
         window.location.pathname == "/arsip" ? link.href = "/delete-arsip/" + id : link.href = "/delete/" + id;
     }
+
+    function arsip(id) {
+        const link = document.getElementById('arsipLink');
+        link.href = "/proses-arsip/" + id;
+    }
 </script>

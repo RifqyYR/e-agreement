@@ -56,6 +56,7 @@ Route::get('/detailArsip/{archive:id}', [ArchiveController::class, 'detail'])->n
 
 // Archive Page Route
 Route::get('/arsip', [ArchiveController::class, 'index'])->name('archive')->middleware(['auth', 'verified']);
+Route::get('/proses-arsip/{id}', [AgreementController::class, 'archiveProcess'])->name('arsip.proses')->middleware(['auth', 'verified']);
 
 // Edit Route
 Route::get('/edit/{agreement:id}', [AgreementController::class, 'edit'])->name('edit')->middleware(['auth', 'verified']);
@@ -73,6 +74,6 @@ Route::get('/delete/{id}', [AgreementController::class, 'delete'])->middleware([
 Route::get('/delete-arsip/{id}', [ArchiveController::class, 'delete'])->middleware(['auth', 'verified']);
 
 // Archive
-Route::get('/arsip', [ArchiveController::class, 'index'])->middleware(['auth', 'verified']);
+Route::get('/arsip', [ArchiveController::class, 'index'])->name('arsip')->middleware(['auth', 'verified']);
 
 Auth::routes(['verifiy' => true]);

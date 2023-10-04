@@ -51,9 +51,9 @@ class ArchiveController extends Controller
         $agreement->delete();
 
         if ($agreement) {
-            return redirect()->route('home')->with('success', 'Berhasil menghapus perjanjian');
+            return redirect()->route('arsip')->with('success', 'Berhasil menghapus arsip perjanjian');
         } else {
-            return redirect()->back()->with('error', 'Gagal menghapus perjanjian');
+            return redirect()->back()->with('error', 'Gagal menghapus arsip perjanjian');
         }
     }
 }

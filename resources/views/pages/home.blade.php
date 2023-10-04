@@ -83,11 +83,38 @@
                                     <th scope="row">{{ $i++ }}</th>
                                     <td class="text-center">{{ $agreement->title }}</td>
                                     <td class="text-center">{{ $agreement->agreementNumber }}</td>
-                                    <td class="d-flex justify-content-center">
+                                    <td class="justify-content-center" style="text-align: center;">
                                         <a href="{{ url('/perpanjang/' . $agreement->id) }}"><button value="perpanjang"
-                                                class="btn btn-primary btn-sm">Perpanjang</button></a>
+                                                class="btn btn-primary btn-sm mb-1"
+                                                style="min-width:8dvw">Perpanjang</button></a>
+                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                            data-target="#archiveModal" style="min-width:8dvw" onclick="arsip('{{ $agreement->id }}')">Arsipkan</button>
                                     </td>
                                 </tr>
+                                <div class="modal fade" id="archiveModal" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Pengarsipan</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Apakah Anda yakin ingin mengarsipkan perjanjian ini?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                                    id="btn-delete">Batal</button>
+                                                <a id="arsipLink">
+                                                    <button type="button" class="btn btn-info">Arsipkan</button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             @endforeach
                         </tbody>
                     </table>
@@ -95,6 +122,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal fade" id="contractNotificationModal" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
