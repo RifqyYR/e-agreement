@@ -31,9 +31,9 @@ class HomeController extends Controller
         $agreementsEndingSoon = $agreements->where('endDate', '<=', $endDateTreshold);
 
         foreach ($agreements as $item) {
-            $startDate = Carbon::parse($item->startDate);
+            $startDate = Carbon::now();
             $endDate = Carbon::parse($item->endDate);
-            $diff = $startDate->diffInDays($endDate);
+            $diff = $endDate->diffInDays($startDate);
             if ($diff <= 10) {
                 array_push($total_expired_agreements, $diff);
             }
@@ -42,7 +42,7 @@ class HomeController extends Controller
         if ($agreementsEndingSoon->isNotEmpty()) {
             return view('pages.home', [
                 'total_agreements' => $total_agreemnts,
-                'total_expired_agreements' => count($total_expired_agreements),
+                'total_expired_agreements' => $agreementsEndingSoon->count(),
                 'agreements' => $agreements,
                 'ending_agreements' => $agreementsEndingSoon
             ]);
@@ -50,7 +50,7 @@ class HomeController extends Controller
         
         return view('pages.home', [
             'total_agreements' => $total_agreemnts,
-            'total_expired_agreements' => count($total_expired_agreements),
+            'total_expired_agreements' => $agreementsEndingSoon->count(),
             'agreements' => $agreements,
             'ending_agreements' => $agreementsEndingSoon
         ]);

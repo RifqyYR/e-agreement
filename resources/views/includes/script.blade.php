@@ -107,12 +107,10 @@
         }
         if (window.location.pathname != '/arsip') {
             for (let i = 0; i < res.agreements.length; i++) {
-                var startDate = res.agreements[i].startDate;
-                var endDate = res.agreements[i].endDate;
-                var diffTime = Math.abs(Date.parse(endDate) - Date.parse(startDate));
+                var endDate = new Date(res.agreements[i].endDate);
+                var diffTime = endDate.getTime() - new Date();
 
-                var differenceInDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                console.log(differenceInDays);
+                var differenceInDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
                 htmlView += `
             @php
                 if (isset($agreement)) {

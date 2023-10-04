@@ -104,7 +104,7 @@
                         Berakhir</h5>
                     <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
                     <ul>
                         @foreach ($ending_agreements as $agreement)
                             @php
