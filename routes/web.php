@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AgreementController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ArchiveController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -45,6 +46,10 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     // Delete
     Route::get('/delete/{id}', [AgreementController::class, 'delete']);
     Route::get('/delete-arsip/{id}', [ArchiveController::class, 'delete']);
+
+    // Register
+    Route::get('/register', [RegisterController::class, 'register'])->name('register');
+    Route::post('/proses-register', [RegisterController::class, 'registerProcess'])->name('proses.register');
 });
 
 // Route Halaman Perjanjian
@@ -76,4 +81,4 @@ Route::get('/arsip', [ArchiveController::class, 'index'])->name('archive')->midd
 // Logout
 Route::post('/logout', [HomeController::class, 'logout']);
 
-Auth::routes(['verify' => true]);
+Auth::routes(['verify' => false, 'register' => false, 'reset' => false]);

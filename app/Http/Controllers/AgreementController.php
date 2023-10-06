@@ -252,8 +252,6 @@ class AgreementController extends Controller
         $oldPath = $agreement->fileName;
         $newPath = str_replace($tipePerjanjianBaru, "arsip", $oldPath);
 
-        dd($newPath);
-
         if (File::exists('storage/' . $oldPath)) {
             File::move('storage/' . $oldPath, 'storage/' . $newPath);
             File::delete('storage/' . $oldPath);

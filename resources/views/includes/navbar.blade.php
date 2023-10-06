@@ -14,8 +14,9 @@
         <form action="" method="POST"
             class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
-                <input type="text" class="form-control bg-light border-2 small" placeholder="Cari berdasarkan judul dan nomor surat"
-                    aria-label="Search" aria-describedby="basic-addon2" id="search" name="search">
+                <input type="text" class="form-control bg-light border-2 small"
+                    placeholder="Cari berdasarkan judul dan nomor surat" aria-label="Search"
+                    aria-describedby="basic-addon2" id="search" name="search">
             </div>
         </form>
     @endif
@@ -36,6 +37,12 @@
                   Profile
               </a>
               <div class="dropdown-divider"></div> --}}
+                @if (Auth::user()->isAdmin != 0)
+                    <a class="dropdown-item" href="{{ url('register') }}">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Tambah User
+                    </a>
+                @endif
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Keluar
