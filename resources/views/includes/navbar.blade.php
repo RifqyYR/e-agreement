@@ -8,7 +8,7 @@
 
     <!-- Topbar Search -->
     @php
-        $notAllowedRoute = ['home', 'tambah-perjanjian', 'detail', 'edit', 'detailArsip'];
+        $notAllowedRoute = ['home', 'tambah-perjanjian', 'detail', 'edit', 'archive.detail', 'perpanjang'];
     @endphp
     @if (!in_array(Route::currentRouteName(), $notAllowedRoute))
         <form action="" method="POST"

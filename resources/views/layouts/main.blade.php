@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-    <title>Admin Panel</title>
+    <title>SI-SUPER</title>
 
     @include('includes.style')
 

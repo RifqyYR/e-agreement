@@ -71,7 +71,9 @@
                                 <th scope="col" class="text-center">No</th>
                                 <th scope="col" class="text-center">Judul</th>
                                 <th scope="col" class="text-center">Nomor Surat</th>
-                                <th scope="col" class="text-center">Aksi</th>
+                                @if (Auth::user()->isAdmin != 0)
+                                    <th scope="col" class="text-center">Aksi</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -83,13 +85,16 @@
                                     <th scope="row">{{ $i++ }}</th>
                                     <td class="text-center">{{ $agreement->title }}</td>
                                     <td class="text-center">{{ $agreement->agreementNumber }}</td>
-                                    <td class="justify-content-center" style="text-align: center;">
-                                        <a href="{{ url('/perpanjang/' . $agreement->id) }}"><button value="perpanjang"
-                                                class="btn btn-primary btn-sm mb-1"
-                                                style="min-width:8dvw">Perpanjang</button></a>
-                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                                            data-target="#archiveModal" style="min-width:8dvw" onclick="arsip('{{ $agreement->id }}')">Arsipkan</button>
-                                    </td>
+                                    @if (Auth::user()->isAdmin != 0)
+                                        <td class="justify-content-center" style="text-align: center;">
+                                            <a href="{{ url('/perpanjang/' . $agreement->id) }}"><button value="perpanjang"
+                                                    class="btn btn-primary btn-sm mb-1"
+                                                    style="min-width:8dvw">Perpanjang</button></a>
+                                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                                data-target="#archiveModal" style="min-width:8dvw"
+                                                onclick="arsip('{{ $agreement->id }}')">Arsipkan</button>
+                                        </td>
+                                    @endif
                                 </tr>
                                 <div class="modal fade" id="archiveModal" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">

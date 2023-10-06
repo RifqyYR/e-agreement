@@ -76,4 +76,4 @@ Route::get('/delete-arsip/{id}', [ArchiveController::class, 'delete'])->middlewa
 // Archive
 Route::get('/arsip', [ArchiveController::class, 'index'])->name('arsip')->middleware(['auth', 'verified']);
 
-Auth::routes(['verifiy' => true]);
+Auth::routes(['verify' => true]);
