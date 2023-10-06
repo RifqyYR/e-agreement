@@ -26,6 +26,27 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
 
+Route::middleware(['auth', 'verified', 'admin'])->group(function () {
+    // Tambah
+    Route::get('/tambah-perjanjian', [AgreementController::class, 'create'])->name('tambah-perjanjian');
+    Route::post('/proses-tambah-perjanjian', [AgreementController::class, 'uploadProcess']);
+
+    // Arsip
+    Route::get('/proses-arsip/{id}', [AgreementController::class, 'archiveProcess'])->name('arsip.proses');
+
+    // Edit
+    Route::get('/edit/{agreement:id}', [AgreementController::class, 'edit'])->name('edit');
+    Route::put('/edit/{id}', [AgreementController::class, 'editProcess'])->name('edit.proses');
+
+    // Perpanjang
+    Route::get('/perpanjang/{agreement:id}', [AgreementController::class, 'extends'])->name('perpanjang');
+    Route::put('/perpanjang/{id}', [AgreementController::class, 'extendProcess'])->name('perpanjang.proses');
+
+    // Delete
+    Route::get('/delete/{id}', [AgreementController::class, 'delete']);
+    Route::get('/delete-arsip/{id}', [ArchiveController::class, 'delete']);
+});
+
 // Route Halaman Perjanjian
 Route::get('/sarpras', [SarprasController::class, 'sarpras'])->middleware(['auth', 'verified']);
 Route::get('/sewa-bangunan', [SewaBangunanController::class, 'sewaBangunan'])->middleware(['auth', 'verified']);
@@ -43,11 +64,6 @@ Route::post('/upp/search', [UPPController::class, 'search'])->name('upp.search')
 Route::post('/lainnya/search', [LainnyaController::class, 'search'])->name('lainnya.search');
 Route::post('/arsip/search', [ArchiveController::class, 'search'])->name('archive.search');
 
-// Route tambah perjanjian
-Route::get('/tambah-perjanjian', [AgreementController::class, 'create'])
-    ->name('tambah-perjanjian')->middleware(['auth', 'verified']);
-Route::post('/proses-tambah-perjanjian', [AgreementController::class, 'uploadProcess'])->middleware(['auth', 'verified']);
-
 // Detail route
 Route::get('/detail/{agreement:id}', [AgreementController::class, 'detail'])->name('detail')->middleware(['auth', 'verified']);
 
@@ -56,24 +72,8 @@ Route::get('/detailArsip/{archive:id}', [ArchiveController::class, 'detail'])->n
 
 // Archive Page Route
 Route::get('/arsip', [ArchiveController::class, 'index'])->name('archive')->middleware(['auth', 'verified']);
-Route::get('/proses-arsip/{id}', [AgreementController::class, 'archiveProcess'])->name('arsip.proses')->middleware(['auth', 'verified']);
-
-// Edit Route
-Route::get('/edit/{agreement:id}', [AgreementController::class, 'edit'])->name('edit')->middleware(['auth', 'verified']);
-Route::put('/edit/{id}', [AgreementController::class, 'editProcess'])->name('edit.proses')->middleware(['auth', 'verified']);
-
-// Edit Route
-Route::get('/perpanjang/{agreement:id}', [AgreementController::class, 'extends'])->name('perpanjang')->middleware(['auth', 'verified']);
-Route::put('/perpanjang/{id}', [AgreementController::class, 'extendProcess'])->name('perpanjang.proses')->middleware(['auth', 'verified']);
 
 // Logout
 Route::post('/logout', [HomeController::class, 'logout']);
-
-// Delete
-Route::get('/delete/{id}', [AgreementController::class, 'delete'])->middleware(['auth', 'verified']);
-Route::get('/delete-arsip/{id}', [ArchiveController::class, 'delete'])->middleware(['auth', 'verified']);
-
-// Archive
-Route::get('/arsip', [ArchiveController::class, 'index'])->name('arsip')->middleware(['auth', 'verified']);
 
 Auth::routes(['verify' => true]);
