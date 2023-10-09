@@ -89,9 +89,9 @@
                                         <td class="justify-content-center" style="text-align: center;">
                                             <a href="{{ url('/perpanjang/' . $agreement->id) }}"><button value="perpanjang"
                                                     class="btn btn-primary btn-sm mb-1"
-                                                    style="min-width:8dvw">Perpanjang</button></a>
+                                                    style="min-width:100px">Perpanjang</button></a>
                                             <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                                                data-target="#archiveModal" style="min-width:8dvw"
+                                                data-target="#archiveModal" style="min-width:100px"
                                                 onclick="arsip('{{ $agreement->id }}')">Arsipkan</button>
                                         </td>
                                     @endif
@@ -147,7 +147,7 @@
                             @endphp
                             <li class="text-danger mb-3 text-justify">{{ $agreement->title }} -
                                 {{ $datediff > 0 ? round($datediff / (60 * 60 * 24)) . ' hari lagi' : 'Sudah lewat ' . round($datediff / (60 * 60 * 24)) * -1 . ' hari' }}
-                            </>
+                            </li>
                         @endforeach
                     </ul>
                 </div>

@@ -104,7 +104,8 @@
         if (window.location.pathname != '/arsip') {
             var options = {
                 dataSource: res.agreements,
-                pageSize: 5,
+                pageSize: 10,
+                showSizeChanger: true,
                 callback: function(data, pagination) {
                     var htmlView = `<tr>`;
 
@@ -181,7 +182,8 @@
         } else {
             var options = {
                 dataSource: res.agreements,
-                pageSize: 1,
+                pageSize: 10,
+                showSizeChanger: true,
                 callback: function(data, pagination) {
                     var htmlView = `<tr>`;
 
