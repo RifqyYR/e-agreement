@@ -145,9 +145,9 @@
                                 $your_date = strtotime($agreement->endDate);
                                 $datediff = $your_date - $now;
                             @endphp
-                            <li class="text-danger">{{ $agreement->title }} -
+                            <li class="text-danger mb-3 text-justify">{{ $agreement->title }} -
                                 {{ $datediff > 0 ? round($datediff / (60 * 60 * 24)) . ' hari lagi' : 'Sudah lewat ' . round($datediff / (60 * 60 * 24)) * -1 . ' hari' }}
-                            </li>
+                            </>
                         @endforeach
                     </ul>
                 </div>

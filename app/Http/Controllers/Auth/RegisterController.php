@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -43,7 +41,7 @@ class RegisterController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'isAdmin' => $request->isAdmin,
-                'email_verified_at' => now(),
+                'email_verified_at' => Carbon::now(),
                 'remember_token' => Str::random(10),
             ]);
             return redirect()->route('home')->with('success', 'Berhasil menambahkan user.');

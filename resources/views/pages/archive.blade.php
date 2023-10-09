@@ -10,7 +10,7 @@
         {{-- Table --}}
         <div class="row">
             <div class="col-xs-12 col-md-12 col-lg-12">
-                <div class="table-responsive">
+                <div class="table-responsive" id="demo">
                     <table class="table table-bordered">
                         <thead class="thead-dark">
                             <tr>
