@@ -10,7 +10,7 @@
             <div class="col-md-7">
                 <div class="embed-responsive embed-responsive-4by3">
                     <iframe class="embed-responsive-item"
-                        src="{{ url('/laraview/#../storage/' . $agreement->fileName) }}"></iframe>
+                        src="{{ asset('/laraview/#../storage/' . $agreement->fileName) }}"></iframe>
                 </div>
             </div>
             <div class="col-md-5">
@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <div class="row m-1">
-                    <a href="{{ url('/storage/' . $agreement->fileName) }}"><button class="btn btn-info">Unduh Perjanjian</button></a>
+                    <a href="{{ asset('storage/' . $agreement->fileName) }}"><button class="btn btn-info">Unduh Perjanjian</button></a>
                 </div>
             </div>
         </div>
