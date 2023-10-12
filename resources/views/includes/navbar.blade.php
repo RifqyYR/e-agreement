@@ -8,7 +8,7 @@
 
     <!-- Topbar Search -->
     @php
-        $notAllowedRoute = ['home', 'tambah-perjanjian', 'detail', 'edit', 'archive.detail', 'perpanjang'];
+        $notAllowedRoute = ['home', 'tambah-perjanjian', 'detail', 'edit', 'archive.detail', 'perpanjang', 'user'];
     @endphp
     @if (!in_array(Route::currentRouteName(), $notAllowedRoute))
         <form action="" method="POST"
@@ -41,6 +41,12 @@
                     <a class="dropdown-item" href="{{ url('register') }}">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                         Tambah User
+                    </a>
+                @endif
+                @if (Auth::user()->isAdmin != 0)
+                    <a class="dropdown-item" href="{{ url('user') }}">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Kelola User
                     </a>
                 @endif
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">

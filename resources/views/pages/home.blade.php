@@ -2,12 +2,6 @@
 
 @section('content')
     <div class="container-fluid">
-        {{-- @if ($message = Session::get('success'))
-            <div class="alert alert-success alert-block">
-                <button type="button" class="close" data-dismiss="alert">×</button>
-                <strong>{{ $message }}</strong>
-            </div>
-        @endif --}}
         <div class="d-sm-flex align-items-center justify-content-between mb-3">
             <h1 class="h3 mb-0 text-gray-800">Beranda</h1>
             @if (Auth::user()->isAdmin == 1)

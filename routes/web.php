@@ -11,6 +11,7 @@ use App\Http\Controllers\SewaBangunanController;
 use App\Http\Controllers\SewaKendaraanController;
 use App\Http\Controllers\TUKSTERSUSController;
 use App\Http\Controllers\UPPController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -42,7 +43,6 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     // Perpanjang
     Route::get('/perpanjang/{agreement:id}', [AgreementController::class, 'extends'])->name('perpanjang');
     Route::put('/perpanjang/{id}', [AgreementController::class, 'extendProcess'])->name('perpanjang.proses');
-
     // Delete
     Route::get('/delete/{id}', [AgreementController::class, 'delete']);
     Route::get('/delete-arsip/{id}', [ArchiveController::class, 'delete']);
@@ -50,6 +50,10 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     // Register
     Route::get('/register', [RegisterController::class, 'register'])->name('register');
     Route::post('/proses-register', [RegisterController::class, 'registerProcess'])->name('proses.register');
+
+    // User Management
+    Route::get('/user', [UserController::class, 'index'])->name('user');
+    Route::get('/user-edit/{user:id}', [UserController::class, 'edit'])->name('user.edit');
 });
 
 // Route Halaman Perjanjian
