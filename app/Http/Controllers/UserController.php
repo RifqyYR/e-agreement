@@ -49,4 +49,14 @@ class UserController extends Controller
         }
         return redirect()->back()->with('error', 'Gagal update user');
     }
+
+    public function delete(String $id)
+    {
+        $user = User::find($id);
+        if ($user) {
+            $user->delete();
+            return redirect()->route('user')->with('success', 'Berhasil menghapus user');
+        }
+        return redirect()->back()->with('error', 'Gagal hapus user');
+    }
 }

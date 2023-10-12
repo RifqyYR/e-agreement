@@ -55,6 +55,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::get('/user', [UserController::class, 'index'])->name('user');
     Route::get('/user-edit/{user:id}', [UserController::class, 'edit'])->name('user.edit');
     Route::post('/proses-edit-user', [UserController::class, 'editProcess'])->name('edit.user.proses');
+    Route::get('/delete-user/{id}', [UserController::class, 'delete'])->name('delete.user.proses');
 });
 
 // Route Halaman Perjanjian
