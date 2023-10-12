@@ -22,9 +22,31 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
-        dd($user);
-        if (!$user) {
-            abort(404);
+        return view('pages.editUser', [
+            'user' => $user,
+        ]);
+    }
+
+    public function editProcess(Request $request) {
+        $user = User::where('email', $request->email)->first();
+        $messages = [
+            'required' => ':attribute tidak boleh kosong',
+        ];
+
+        $this->validate($request, [
+            'email' => 'required',
+            'name' => 'required',
+        ], $messages);
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'isAdmin' => $request->isAdmin,
+        ]);
+
+        if ($user) {
+            return redirect()->route('user')->with('success', 'Berhasil update user');
         }
+        return redirect()->back()->with('error', 'Gagal update user');
     }
 }

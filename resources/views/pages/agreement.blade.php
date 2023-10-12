@@ -44,7 +44,7 @@
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <a href="{{ url('/detail/' . $agreement->id) }}"><button type="button"
-                                                    class="btn btn-info btn-sm me-2">
+                                                    class="btn btn-info btn-sm">
                                                     <svg xmlns="http://www.w3.org/2000/svg" height="1em"
                                                         viewBox="0 0 576 512">
                                                         <style>

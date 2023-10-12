@@ -28,19 +28,19 @@
                                     <td>{{ $user->isAdmin == 1 ? 'Admin' : 'User Biasa' }}</td>
                                     <td>
                                         <div class="align-items-center d-grip gap-4">
-                                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                                                data-target="#editUserModal" onclick="hapusUser('{{ $user->id }}')">
-                                                <svg xmlns="http://www.w3.org/2000/svg" height="1em"
-                                                    viewBox="0 0 512 512">
-                                                    <style>
-                                                        svg {
-                                                            fill: #ffffff
-                                                        }
-                                                    </style>
-                                                    <path
-                                                        d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z" />
-                                                </svg>
-                                            </button>
+                                            <a href="{{ url('/user-edit/' . $user->id) }}"><button type="button" class="btn btn-info btn-sm">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" height="1em"
+                                                        viewBox="0 0 512 512">
+                                                        <style>
+                                                            svg {
+                                                                fill: #ffffff
+                                                            }
+                                                        </style>
+                                                        <path
+                                                            d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z" />
+                                                    </svg>
+                                                </button>
+                                            </a>
                                             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                                 data-target="#deleteUserModal" onclick="hapusUser('{{ $user->id }}')">
                                                 <svg xmlns="http://www.w3.org/2000/svg" height="1em"
@@ -77,64 +77,6 @@
                                                 <a id="deleteUserLink">
                                                     <button type="button" class="btn btn-danger">Hapus</button>
                                                 </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Edit User Form</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form action="" method="post"
-                                                    enctype="multipart/form-data">
-                                                    @csrf
-                                                    @method('PUT')
-                                                    <div class="form-group">
-                                                        <label for="nama">Nama</label>
-                                                        <input type="text"
-                                                            class="form-control @error('nama') is-invalid @enderror"
-                                                            name="nama" value="{{ $user->name }}">
-                                                        @error('nama')
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
-                                                        @enderror
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="email">Email</label>
-                                                        <input type="text"
-                                                            class="form-control @error('email') is-invalid @enderror"
-                                                            name="email" value="{{ $user->email }}">
-                                                        @error('email')
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
-                                                        @enderror
-                                                    </div>
-                                                    <div class="form-group">
-                                                      <label for="role">Role</label>
-                                                      <select class="custom-select @error('role') is-invalid @enderror" name="role">
-                                                          <option {{ $user->isAdmin == 0 ? 'selected' : '' }} value="0">User Biasa</option>
-                                                          <option {{ $user->isAdmin == 1 ? 'selected' : '' }} value="1">Admin</option>
-                                                      </select>
-                                                      @error('role')
-                                                          <span class="invalid-feedback" role="alert">
-                                                              <strong>{{ $message }}</strong>
-                                                          </span>
-                                                      @enderror
-                                                  </div>
-                                                    <div class="form-group mt-5">
-                                                        <input type="submit" class="btn btn-primary" value="Ubah">
-                                                    </div>
-                                                </form>
                                             </div>
                                         </div>
                                     </div>
