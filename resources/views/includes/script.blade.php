@@ -270,6 +270,7 @@
         const link = document.getElementById('arsipLink');
         link.href = "/proses-arsip/" + id;
     }
+
     function hapusUser(id) {
         const link = document.getElementById('deleteUserLink');
         link.href = "/delete-user/" + id;

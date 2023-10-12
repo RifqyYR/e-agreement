@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+                    <div class="card-header">{{ __('Tambah User') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="/proses-register">
@@ -86,7 +86,7 @@
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        Register
+                                        Tambah User
                                     </button>
                                 </div>
                             </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -27,7 +28,8 @@ class UserController extends Controller
         ]);
     }
 
-    public function editProcess(Request $request) {
+    public function editProcess(Request $request)
+    {
         $user = User::where('email', $request->email)->first();
         $messages = [
             'required' => ':attribute tidak boleh kosong',
@@ -58,5 +60,26 @@ class UserController extends Controller
             return redirect()->route('user')->with('success', 'Berhasil menghapus user');
         }
         return redirect()->back()->with('error', 'Gagal hapus user');
+    }
+
+    public function changePassword(String $id)
+    {
+        $user = User::find($id);
+
+        return view('pages.changePassword', [
+            'user' => $user,
+        ]);
+    }
+
+    public function changePasswordProcess(User $user, Request $request)
+    {
+        $user->update([
+            'password' => $request->password,
+        ]);
+
+        if ($user) {
+            return redirect()->route('user')->with('success', 'Berhasil ubah password');
+        }
+        return redirect()->back()->with('error', 'Gagal ubah password');
     }
 }

@@ -28,7 +28,8 @@
                                     <td>{{ $user->isAdmin == 1 ? 'Admin' : 'User Biasa' }}</td>
                                     <td>
                                         <div class="align-items-center d-grip gap-4">
-                                            <a href="{{ url('/user-edit/' . $user->id) }}"><button type="button" class="btn btn-info btn-sm">
+                                            <a href="{{ url('/user-edit/' . $user->id) }}"><button type="button"
+                                                    class="btn btn-info btn-sm">
                                                     <svg xmlns="http://www.w3.org/2000/svg" height="1em"
                                                         viewBox="0 0 512 512">
                                                         <style>
@@ -41,6 +42,22 @@
                                                     </svg>
                                                 </button>
                                             </a>
+
+                                            <a href="{{ url('/ganti-password/' . $user->id) }}"><button type="button"
+                                                    class="btn btn-primary btn-sm">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" height="1em"
+                                                        viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                                        <style>
+                                                            svg {
+                                                                fill: #ffffff
+                                                            }
+                                                        </style>
+                                                        <path
+                                                            d="M336 352c97.2 0 176-78.8 176-176S433.2 0 336 0S160 78.8 160 176c0 18.7 2.9 36.8 8.3 53.7L7 391c-4.5 4.5-7 10.6-7 17v80c0 13.3 10.7 24 24 24h80c13.3 0 24-10.7 24-24V448h40c13.3 0 24-10.7 24-24V384h40c6.4 0 12.5-2.5 17-7l33.3-33.3c16.9 5.4 35 8.3 53.7 8.3zM376 96a40 40 0 1 1 0 80 40 40 0 1 1 0-80z" />
+                                                    </svg>
+                                                </button>
+                                            </a>
+
                                             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                                 data-target="#deleteUserModal" onclick="hapusUser('{{ $user->id }}')">
                                                 <svg xmlns="http://www.w3.org/2000/svg" height="1em"
