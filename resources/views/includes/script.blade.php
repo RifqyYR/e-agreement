@@ -12,10 +12,7 @@
 <script src="{{ url('backend/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="{{ url('backend/js/sb-admin-2.min.js') }}"></script>
-
-<!-- Page level plugins -->
-<script src="{{ url('backend/vendor/chart.js/Chart.min.js') }}"></script>
+<script src="{{ url('backend/js/sb-admin-2.js') }}"></script>
 
 {{-- Gijgo --}}
 <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
@@ -25,19 +22,20 @@
 
 {{-- Search Function --}}
 <script>
-    $('#search').on('keyup', function() {
+    $('#search,#searchD').on('keyup', function() {
         search();
     });
     search();
 
     function search() {
-        var keyword = $('#search').val();
+        var keyword = $('#search,#searchD').val();
         if (window.location.pathname == "/sarpras") {
             $.post('{{ route('sarpras.search') }}', {
                     _token: $('meta[name="csrf-token"]').attr('content'),
                     keyword: keyword
                 },
                 function(data) {
+                    console.log(data);
                     table_post_row(data);
                 });
         } else if (window.location.pathname == "/sewa-bangunan") {

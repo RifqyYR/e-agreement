@@ -4,8 +4,7 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/') }}">
         <div class="sidebar-brand-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" height="1em"
-                viewBox="0 0 384 512">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
                 <style>
                     svg {
                         fill: #ffffff
@@ -24,7 +23,6 @@
     <!-- Nav Item - Beranda -->
     <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
         <a class="nav-link" href="{{ url('/') }}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Beranda</span></a>
     </li>
 

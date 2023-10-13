@@ -23,7 +23,6 @@
 
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
-        <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
@@ -39,18 +38,15 @@
               <div class="dropdown-divider"></div> --}}
                 @if (Auth::user()->isAdmin != 0)
                     <a class="dropdown-item" href="{{ url('register') }}">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                         Tambah User
                     </a>
                 @endif
                 @if (Auth::user()->isAdmin != 0)
                     <a class="dropdown-item" href="{{ url('user') }}">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                         Kelola User
                     </a>
                 @endif
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Keluar
                 </a>
             </div>
