@@ -27,9 +27,10 @@ class UserController extends Controller
         ]);
     }
 
-    public function editProcess(Request $request)
+    public function editProcess(Request $request, String $id)
     {
-        $user = User::where('email', $request->email)->first();
+        $user = User::find($id);
+
         $messages = [
             'required' => ':attribute tidak boleh kosong',
         ];

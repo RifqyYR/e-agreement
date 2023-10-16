@@ -29,9 +29,6 @@
                                     Total Surat Perjanjian Kerja Sama</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $total_agreements }}</div>
                             </div>
-                            <div class="col-auto">
-                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -45,9 +42,6 @@
                                 <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                     Total Surat Perjanjian Kerja Sama yang Akan Berakhir</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $total_expired_agreements }}</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
@@ -65,6 +59,7 @@
                                 <th scope="col" class="text-center">No</th>
                                 <th scope="col" class="text-center">Judul</th>
                                 <th scope="col" class="text-center">Nomor Surat</th>
+                                <th scope="col" class="text-center">Tanggal Berakhir</th>
                                 @if (Auth::user()->isAdmin != 0)
                                     <th scope="col" class="text-center">Aksi</th>
                                 @endif
@@ -79,6 +74,7 @@
                                     <th scope="row">{{ $i++ }}</th>
                                     <td class="text-center">{{ $agreement->title }}</td>
                                     <td class="text-center">{{ $agreement->agreementNumber }}</td>
+                                    <td class="text-center">{{ $agreement->endDate }}</td>
                                     @if (Auth::user()->isAdmin != 0)
                                         <td class="justify-content-center" style="text-align: center;">
                                             <a href="{{ url('/perpanjang/' . $agreement->id) }}"><button value="perpanjang"

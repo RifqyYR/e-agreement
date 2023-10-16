@@ -54,7 +54,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     // User Management
     Route::get('/user', [UserController::class, 'index'])->name('user');
     Route::get('/user-edit/{user:id}', [UserController::class, 'edit'])->name('user.edit');
-    Route::post('/proses-edit-user', [UserController::class, 'editProcess'])->name('edit.user.proses');
+    Route::post('/proses-edit-user/{user:id}', [UserController::class, 'editProcess'])->name('edit.user.proses');
     Route::get('/delete-user/{id}', [UserController::class, 'delete'])->name('delete.user.proses');
     Route::get('/ganti-password/{user:id}', [UserController::class, 'changePassword'])->name('user.change-password');
     Route::post('/proses-ganti-password/{user:id}', [UserController::class, 'changePasswordProcess'])->name('user.change-password.process');

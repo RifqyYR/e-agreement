@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $agreements = Agreement::all();
+        $agreements = Agreement::orderBy('endDate', 'DESC')->get();
         $total_agreemnts = count($agreements);
         $total_expired_agreements = array();
         $endDateTreshold = Carbon::now()->addDays(10);

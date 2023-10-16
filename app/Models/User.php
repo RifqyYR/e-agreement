@@ -19,7 +19,11 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    protected $primaryKey = 'id';
+
     protected $fillable = [
+        'id',
         'name',
         'email',
         'password',
@@ -48,5 +52,4 @@ class User extends Authenticatable
 
     public $incrementing = false;
     protected $keyType = 'string';
-    protected $primaryKey = 'id';
 }
