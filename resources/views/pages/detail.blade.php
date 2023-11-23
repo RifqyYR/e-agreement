@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <div class="row m-1">
-                    <a href="{{ asset('storage/' . $agreement->fileName) }}"><button class="btn btn-info">Unduh Perjanjian</button></a>
+                    <a target="_blank" href="{{ asset('storage/' . $agreement->fileName) }}"><button class="btn btn-info">Unduh Perjanjian</button></a>
                 </div>
             </div>
         </div>
