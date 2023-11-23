@@ -19,6 +19,10 @@
                     aria-describedby="basic-addon2" id="search" name="search">
             </div>
         </form>
+    @else
+        <div class="navbar-brand">
+            <img src="{{ url('logo.svg') }}" alt="logo si-super" width="150" height="30">
+        </div>
     @endif
 
     <!-- Topbar Navbar -->

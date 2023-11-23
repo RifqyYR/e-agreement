@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-    <title>SI-SUPER</title>
+    <title>SI-SUPER | Sistem Informasi Surat Perjanjian</title>
 
     @include('includes.style')
 
