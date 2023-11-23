@@ -29,20 +29,6 @@ Route::get('/', [HomeController::class, 'index'])
     ->name('home');
 
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
-    // Tambah
-    Route::get('/tambah-perjanjian', [AgreementController::class, 'create'])->name('tambah-perjanjian');
-    Route::post('/proses-tambah-perjanjian', [AgreementController::class, 'uploadProcess']);
-
-    // Arsip
-    Route::get('/proses-arsip/{id}', [AgreementController::class, 'archiveProcess'])->name('arsip.proses');
-
-    // Edit
-    Route::get('/edit/{agreement:id}', [AgreementController::class, 'edit'])->name('edit');
-    Route::put('/edit/{id}', [AgreementController::class, 'editProcess'])->name('edit.proses');
-
-    // Perpanjang
-    Route::get('/perpanjang/{agreement:id}', [AgreementController::class, 'extends'])->name('perpanjang');
-    Route::put('/perpanjang/{id}', [AgreementController::class, 'extendProcess'])->name('perpanjang.proses');
     // Delete
     Route::get('/delete/{id}', [AgreementController::class, 'delete']);
     Route::get('/delete-arsip/{id}', [ArchiveController::class, 'delete']);
@@ -59,6 +45,21 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::get('/ganti-password/{user:id}', [UserController::class, 'changePassword'])->name('user.change-password');
     Route::post('/proses-ganti-password/{user:id}', [UserController::class, 'changePasswordProcess'])->name('user.change-password.process');
 });
+
+// Tambah
+Route::get('/tambah-perjanjian', [AgreementController::class, 'create'])->name('tambah-perjanjian');
+Route::post('/proses-tambah-perjanjian', [AgreementController::class, 'uploadProcess']);
+
+// Arsip
+Route::get('/proses-arsip/{id}', [AgreementController::class, 'archiveProcess'])->name('arsip.proses');
+
+// Edit
+Route::get('/edit/{agreement:id}', [AgreementController::class, 'edit'])->name('edit');
+Route::put('/edit/{id}', [AgreementController::class, 'editProcess'])->name('edit.proses');
+
+// Perpanjang
+Route::get('/perpanjang/{agreement:id}', [AgreementController::class, 'extends'])->name('perpanjang');
+Route::put('/perpanjang/{id}', [AgreementController::class, 'extendProcess'])->name('perpanjang.proses');
 
 // Route Halaman Perjanjian
 Route::get('/sarpras', [SarprasController::class, 'sarpras'])->middleware(['auth', 'verified']);

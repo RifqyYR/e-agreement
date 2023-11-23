@@ -4,19 +4,17 @@
     <div class="container-fluid">
         <div class="d-sm-flex align-items-center justify-content-between mb-3">
             <h1 class="h3 mb-0 text-gray-800">Beranda</h1>
-            @if (Auth::user()->isAdmin == 1)
-                <a href="{{ url('/tambah-perjanjian') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
-                        <style>
-                            svg {
-                                fill: #ffffff
-                            }
-                        </style>
-                        <path
-                            d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
-                    </svg>
-                    Perjanjian Baru</a>
-            @endif
+            <a href="{{ url('/tambah-perjanjian') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                    <style>
+                        svg {
+                            fill: #ffffff
+                        }
+                    </style>
+                    <path
+                        d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
+                </svg>
+                Perjanjian Baru</a>
         </div>
 
         <div class="row">
@@ -60,9 +58,7 @@
                                 <th scope="col" class="text-center">Judul</th>
                                 <th scope="col" class="text-center">Nomor Surat</th>
                                 <th scope="col" class="text-center">Tanggal Berakhir</th>
-                                @if (Auth::user()->isAdmin != 0)
-                                    <th scope="col" class="text-center">Aksi</th>
-                                @endif
+                                <th scope="col" class="text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -75,16 +71,14 @@
                                     <td class="text-center">{{ $agreement->title }}</td>
                                     <td class="text-center">{{ $agreement->agreementNumber }}</td>
                                     <td class="text-center">{{ $agreement->endDate }}</td>
-                                    @if (Auth::user()->isAdmin != 0)
-                                        <td class="justify-content-center" style="text-align: center;">
-                                            <a href="{{ url('/perpanjang/' . $agreement->id) }}"><button value="perpanjang"
-                                                    class="btn btn-primary btn-sm mb-1"
-                                                    style="min-width:100px">Perpanjang</button></a>
-                                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                                                data-target="#archiveModal" style="min-width:100px"
-                                                onclick="arsip('{{ $agreement->id }}')">Arsipkan</button>
-                                        </td>
-                                    @endif
+                                    <td class="justify-content-center" style="text-align: center;">
+                                        <a href="{{ url('/perpanjang/' . $agreement->id) }}"><button value="perpanjang"
+                                                class="btn btn-primary btn-sm mb-1"
+                                                style="min-width:100px">Perpanjang</button></a>
+                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                            data-target="#archiveModal" style="min-width:100px"
+                                            onclick="arsip('{{ $agreement->id }}')">Arsipkan</button>
+                                    </td>
                                 </tr>
                                 <div class="modal fade" id="archiveModal" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
