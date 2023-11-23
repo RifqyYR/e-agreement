@@ -21,7 +21,6 @@ class RegisterController extends Controller
         $messages = [
             'required' => ':attribute tidak boleh kosong',
             'unique' => ':attribute yang diinput sudah terdaftar',
-            'min' => ':attribute minimal 8 karakter',
         ];
 
         $validator = $this->validate(
@@ -29,7 +28,7 @@ class RegisterController extends Controller
             [
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|max:255|unique:users',
-                'password' => 'required|string|min:8',
+                'password' => 'required|string',
                 'isAdmin' => 'required'
             ],
             $messages

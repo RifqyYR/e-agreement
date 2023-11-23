@@ -50,7 +50,7 @@
         <h3 class="h3 mb-3 text-gray-800">Daftar Perjanjian yang Akan Berakhir</h3>
         <div class="row">
             <div class="col-xs-12 col-md-12">
-                <div class="table-responsive">
+                <div class="table-responsive" id="demo">
                     <table class="table table-striped">
                         <thead class="thead-light">
                             <tr>

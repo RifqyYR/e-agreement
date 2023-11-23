@@ -22,6 +22,52 @@
 
 {{-- Search Function --}}
 <script>
+    $.ajax({
+        type: "GET",
+        url: "/get-data-perjanjian",
+        success: function(data, pagination) {
+            var options = {
+                dataSource: data.agreements,
+                pageSize: 10,
+                showSizeChanger: true,
+                callback: function(data, pagination) {
+                    var htmlView = `<tr>`;
+
+                    if (data.length == 0) {
+                        htmlView += `
+            <tr>
+                <td colspan="7">Tidak ada data.</td>
+            </tr>`;
+                    }
+                    // console.log(data);
+                    $.each(data, function(index, item) {
+                        var i = index + 1
+
+                        htmlView += `
+            <th scope="row">` + i + `</th>
+            <td class="text-center">`+ item.title +`</td>
+            <td class="text-center">` + item.agreementNumber + `</td>
+            <td class="text-center">`+ item.endDate +`</td>
+            <td class="justify-content-center" style="text-align: center;">
+                <a href="{{ url('/perpanjang/`+ item.id +`') }}"><button value="perpanjang"
+                        class="btn btn-primary btn-sm mb-1"
+                        style="min-width:100px">Perpanjang</button></a>
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                    data-target="#archiveModal" style="min-width:100px"
+                    onclick="arsip('`+ item.id +`')">Arsipkan</button>
+            </td>`;
+                        htmlView += `</tr>`;
+                    });
+                    $('tbody').html(htmlView);
+                }
+            };
+            $('#demo').pagination(options);
+        },
+        error: function(data) {
+            alert('Error:', data);
+        }
+    });
+
     $('#search,#searchD').on('keyup', function() {
         search();
     });
@@ -35,7 +81,6 @@
                     keyword: keyword
                 },
                 function(data) {
-                    console.log(data);
                     table_post_row(data);
                 });
         } else if (window.location.pathname == "/sewa-bangunan") {
@@ -97,6 +142,7 @@
                 }
             });
     }
+
     // table row with ajax
     function table_post_row(res) {
         if (window.location.pathname != '/arsip') {

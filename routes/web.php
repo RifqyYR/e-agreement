@@ -46,6 +46,8 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::post('/proses-ganti-password/{user:id}', [UserController::class, 'changePasswordProcess'])->name('user.change-password.process');
 });
 
+Route::get('/get-data-perjanjian', [HomeController::class, 'getData']);
+
 // Tambah
 Route::get('/tambah-perjanjian', [AgreementController::class, 'create'])->name('tambah-perjanjian');
 Route::post('/proses-tambah-perjanjian', [AgreementController::class, 'uploadProcess']);
