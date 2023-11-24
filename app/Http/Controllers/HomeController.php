@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Agreement;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -48,7 +47,7 @@ class HomeController extends Controller
                 'ending_agreements' => $agreementsEndingSoon
             ]);
         }
-        
+
         return view('pages.home', [
             'total_agreements' => $total_agreemnts,
             'total_expired_agreements' => $agreementsEndingSoon->count(),
@@ -67,7 +66,7 @@ class HomeController extends Controller
         $agreements = Agreement::orderBy('endDate', 'DESC');
         $endDateTreshold = Carbon::now()->addDays(10);
         $agreementsEndingSoon = $agreements->where('endDate', '<=', $endDateTreshold)->get();
-        
+
         return response()->json([
             'agreements' => $agreementsEndingSoon,
         ]);

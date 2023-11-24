@@ -12,7 +12,7 @@
     @endphp
     @if (!in_array(Route::currentRouteName(), $notAllowedRoute))
         <form action="" method="POST"
-            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            class="d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
                 <input type="text" class="form-control bg-light border-2 small"
                     placeholder="Cari berdasarkan judul dan nomor surat" aria-label="Search"
@@ -33,13 +33,7 @@
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
                 <img class="img-profile rounded-circle" src="{{ url('backend/img/undraw_profile.svg') }}">
             </a>
-            <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                {{-- <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-              </a>
-              <div class="dropdown-divider"></div> --}}
                 @if (Auth::user()->isAdmin != 0)
                     <a class="dropdown-item" href="{{ url('register') }}">
                         Tambah User
