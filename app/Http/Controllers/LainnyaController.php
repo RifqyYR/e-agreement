@@ -35,4 +35,31 @@ class LainnyaController extends Controller
             'agreements' => $agreements,
         ]);
     }
+
+    public function all()
+    {
+        $agreements = Agreement::all();
+        return view('pages.agreement', [
+            'title' => 'Semua Surat Perjanjian',
+            'agreements' => $agreements
+        ]);
+    }
+
+    public function searchAll(Request $request)
+    {
+        $agreements = Agreement::all();
+        if ($request->keyword != '') {
+            $agreements = Agreement::query()
+                                    ->where(function ($query) use ($request){
+                                        $query->where('title', 'LIKE', '%' . $request->keyword . '%');
+                                    })
+                                    ->orWhere(function ($query) use ($request){
+                                        $query->where('agreementNumber', 'LIKE', '%' . $request->keyword . '%');
+                                    })
+                                    ->get();
+        }
+        return response()->json([
+            'agreements' => $agreements,
+        ]);
+    }
 }

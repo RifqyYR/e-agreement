@@ -23,8 +23,7 @@
     <!-- Nav Item - Beranda -->
     <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
         <a class="nav-link" href="{{ url('/') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" height="1em"
-                viewBox="0 0 576 512">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
                 <style>
                     svg {
                         fill: #ffffff
@@ -48,8 +47,7 @@
     {{-- Menu Item --}}
     <li class="nav-item {{ Request::is('sarpras') ? 'active' : '' }}">
         <a class="nav-link" href="/sarpras">
-            <svg xmlns="http://www.w3.org/2000/svg" height="1em"
-                viewBox="0 0 384 512">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
                 <style>
                     svg {
                         fill: #ffffff
@@ -64,8 +62,7 @@
 
     <li class="nav-item {{ Request::is('sewa-bangunan') ? 'active' : '' }}">
         <a class="nav-link" href="/sewa-bangunan">
-            <svg xmlns="http://www.w3.org/2000/svg" height="1em"
-                viewBox="0 0 384 512">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
                 <style>
                     svg {
                         fill: #ffffff
@@ -80,8 +77,7 @@
 
     <li class="nav-item {{ Request::is('sewa-kendaraan') ? 'active' : '' }}">
         <a class="nav-link" href="/sewa-kendaraan">
-            <svg xmlns="http://www.w3.org/2000/svg" height="1em"
-                viewBox="0 0 512 512">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                 <style>
                     svg {
                         fill: #ffffff
@@ -96,8 +92,7 @@
 
     <li class="nav-item {{ Request::is('tuks-tersus') ? 'active' : '' }}">
         <a class="nav-link" href="/tuks-tersus">
-            <svg xmlns="http://www.w3.org/2000/svg" height="1em"
-                viewBox="0 0 384 512">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
                 <style>
                     svg {
                         fill: #ffffff
@@ -112,8 +107,7 @@
 
     <li class="nav-item {{ Request::is('upp') ? 'active' : '' }}">
         <a class="nav-link" href="/upp">
-            <svg xmlns="http://www.w3.org/2000/svg" height="1em"
-                viewBox="0 0 384 512">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
                 <style>
                     svg {
                         fill: #ffffff
@@ -128,8 +122,7 @@
 
     <li class="nav-item {{ Request::is('lainnya') ? 'active' : '' }}">
         <a class="nav-link" href="/lainnya">
-            <svg xmlns="http://www.w3.org/2000/svg" height="1em"
-                viewBox="0 0 512 512">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                 <style>
                     svg {
                         fill: #ffffff
@@ -147,8 +140,7 @@
 
     <li class="nav-item {{ Request::is('arsip') ? 'active' : '' }}">
         <a class="nav-link" href="/arsip">
-            <svg xmlns="http://www.w3.org/2000/svg" height="1em"
-                viewBox="0 0 512 512">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                 <style>
                     svg {
                         fill: #ffffff
@@ -158,6 +150,17 @@
                     d="M64 480H448c35.3 0 64-28.7 64-64V160c0-35.3-28.7-64-64-64H288c-10.1 0-19.6-4.7-25.6-12.8L243.2 57.6C231.1 41.5 212.1 32 192 32H64C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64z" />
             </svg>
             <span>Arsip</span>
+        </a>
+    </li>
+
+    <li class="nav-item {{ Request::is('semua') ? 'active' : '' }}">
+        <a class="nav-link" href="/semua">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512" height="1em">
+                <path
+                    d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z" />
+            </svg>
+            <span>Semua Surat Perjanjian</span>
         </a>
     </li>
 

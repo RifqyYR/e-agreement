@@ -4,7 +4,11 @@
     <div class="container-fluid">
         {{-- Header --}}
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Surat Perjanjian {{ $title }}</h1>
+            @if (Request::is('semua'))
+                <h1 class="h3 mb-0 text-gray-800">{{ $title }}</h1>
+            @else
+                <h1 class="h3 mb-0 text-gray-800">Surat Perjanjian {{ $title }}</h1>
+            @endif
         </div>
 
         {{-- Table --}}

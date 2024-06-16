@@ -70,6 +70,7 @@ Route::get('/sewa-kendaraan', [SewaKendaraanController::class, 'sewaKendaraan'])
 Route::get('/tuks-tersus', [TUKSTERSUSController::class, 'tuksTersus'])->middleware(['auth', 'verified']);
 Route::get('/upp', [UPPController::class, 'upp'])->middleware(['auth', 'verified']);
 Route::get('/lainnya', [LainnyaController::class, 'lainnya'])->middleware(['auth', 'verified']);
+Route::get('/semua', [LainnyaController::class, 'all'])->middleware(['auth', 'verified']);
 
 // Route searching function
 Route::post('/sarpras/search', [SarprasController::class, 'search'])->name('sarpras.search');
@@ -79,6 +80,8 @@ Route::post('/tuks-tersus/search', [TUKSTERSUSController::class, 'search'])->nam
 Route::post('/upp/search', [UPPController::class, 'search'])->name('upp.search');
 Route::post('/lainnya/search', [LainnyaController::class, 'search'])->name('lainnya.search');
 Route::post('/arsip/search', [ArchiveController::class, 'search'])->name('archive.search');
+Route::post('/home/search', [HomeController::class, 'search'])->name('home.search');
+Route::post('/semua/search', [LainnyaController::class, 'searchAll'])->name('semua.search');
 
 // Detail route
 Route::get('/detail/{agreement:id}', [AgreementController::class, 'detail'])->name('detail')->middleware(['auth', 'verified']);

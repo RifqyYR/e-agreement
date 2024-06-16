@@ -134,6 +134,24 @@
                     table_post_row(data);
                     console.log(data);
                 });
+        } else if (window.location.pathname == '/') {
+            $.post('{{ route('home.search') }}', {
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    keyword: keyword
+                },
+                function(data) {
+                    table_post_row_home(data);
+                    console.log(data);
+                });
+        } else if (window.location.pathname == '/semua') {
+            $.post('{{ route('semua.search') }}', {
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    keyword: keyword
+                },
+                function(data) {
+                    table_post_row(data);
+                    console.log(data);
+                });
         }
 
         // Disable Enter Button on Search
@@ -290,6 +308,47 @@
             }
             $('#demo').pagination(options);
         }
+    }
+
+    function table_post_row_home(res) {
+        var options = {
+            dataSource: res.agreements,
+            pageSize: 10,
+            showSizeChanger: true,
+            callback: function(data, pagination) {
+                var htmlView = `<tr>`;
+
+                if (data.length == 0) {
+                    htmlView += `
+                        <tr>
+                            <td colspan="5">Tidak ada data.</td>
+                        </tr>`;
+                }
+                $.each(data, function(index, item) {
+                    var endDate = new Date(item.endDate);
+                    var diffTime = endDate.getTime() - new Date();
+                    var differenceInDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                    var i = index + 1
+
+                    htmlView += `
+                            <th scope="row">${i}</th>
+                            <td class="text-center">${item.title}</td>
+                            <td class="text-center">${item.agreementNumber}</td>
+                            <td class="text-center">${item.endDate}</td>
+                            <td class="justify-content-center" style="text-align: center;">
+                                <a href="{{ url('/perpanjang/` + item.id +`') }}"><button value="perpanjang"
+                                        class="btn btn-primary btn-sm mb-1"
+                                        style="min-width:100px">Perpanjang</button></a>
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                    data-target="#archiveModal" style="min-width:100px"
+                                    onclick="arsip('` +item.id + `')">Arsipkan</button>
+                            </td>`;
+                    htmlView += `</tr>`;
+                });
+                $('tbody').html(htmlView);
+            }
+        }
+        $('#demo').pagination(options);
     }
 </script>
 

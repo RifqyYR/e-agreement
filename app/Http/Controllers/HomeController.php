@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Agreement;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -67,6 +68,35 @@ class HomeController extends Controller
         $endDateTreshold = Carbon::now()->addDays(10);
         $agreementsEndingSoon = $agreements->where('endDate', '<=', $endDateTreshold)->get();
 
+        return response()->json([
+            'agreements' => $agreementsEndingSoon,
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $agreements = Agreement::orderBy('endDate', 'DESC')->get();
+        $endDateTreshold = Carbon::now()->addDays(10);
+        $agreementsEndingSoon = $agreements->where('endDate', '<=', $endDateTreshold);
+
+        if ($request->keyword != '') {
+            $agreementsEndingSoon = Agreement::query()
+                ->where(function ($query) use ($request, $endDateTreshold){
+                    $query->where('agreementType', 'sarpras')
+                        ->where('title', 'LIKE', '%' . $request->keyword . '%')
+                        ->where('endDate', '<=', $endDateTreshold);
+                })
+                ->orWhere(function ($query) use ($request, $endDateTreshold){
+                    $query->where('agreementType', 'sarpras')
+                        ->where('agreementNumber', 'LIKE', '%' . $request->keyword . '%')
+                        ->where('endDate', '<=', $endDateTreshold);
+                })
+                ->where('endDate', '<=', $endDateTreshold)
+                ->orderBy('endDate', 'DESC')
+                ->get();
+        } elseif($request->keyword == '') {
+            $agreementsEndingSoon = Agreement::where('endDate', '<=', $endDateTreshold)->orderBy('endDate', 'DESC')->get();
+        }
         return response()->json([
             'agreements' => $agreementsEndingSoon,
         ]);
